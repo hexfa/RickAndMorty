@@ -5,4 +5,6 @@ data class SimpleCharacter(
     val image: String,
     val id: String,
     val gender: String,
+    val species: String
+
 )
