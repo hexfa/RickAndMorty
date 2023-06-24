@@ -35,7 +35,9 @@ Before running the Rick and Morty App, ensure you have the following installed o
 - Android Studio 4.2 or later.
 - Android SDK with a minimum SDK version of 21.
 - Kotlin 1.4 or later.
-
+## Preview 📱
+  ### Images 🖼️
+  <img src="https://github.com/hexfa/Files/blob/main/RickAndMorty/Screenshot%202023-06-20%20230730.png" height="649" width="300" alt="Rick and morty App hexfa">         
 
 ## Contributing
 
