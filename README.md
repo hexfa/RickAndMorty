@@ -1,6 +1,6 @@
 # Rick and Morty App
-
-This is a sample README file for the Rick and Morty App, which displays the names of characters from the popular TV show "Rick and Morty". The app is built using the following technologies: Compose, GraphQL, Hilt, View Model, and Clean Architecture.
+## Details 📜
+This is a simple app for Rick and Morty, which displays the names of characters from the popular TV show "Rick and Morty". The app is built using the following technologies: Compose, GraphQL, Hilt, View Model, and Clean Architecture.
 
 ## Table of Contents
 
@@ -9,7 +9,7 @@ This is a sample README file for the Rick and Morty App, which displays the name
 - [Prerequisites](#prerequisites)
 - [Contributing](#contributing)
 
-## Features
+## Features 🚩
 
 The Rick and Morty App provides the following features:
 
@@ -35,9 +35,27 @@ Before running the Rick and Morty App, ensure you have the following installed o
 - Android Studio 4.2 or later.
 - Android SDK with a minimum SDK version of 21.
 - Kotlin 1.4 or later.
+
+## Lets Start 🕺
+
+Clone this repository and import it into your **Android IDE**
+```bash
+https://github.com/hexfa/RickAndMorty.git
+```
+
 ## Preview 📱
   ### Images 🖼️
   <img src="https://github.com/hexfa/Files/blob/main/RickAndMorty/Screenshot%202023-06-20%20230730.png" height="649" width="300" alt="Rick and morty App hexfa">         
+
+## Resources ℹ️
+- #### Remote API
+  ```bash
+  https://rickandmortyapi.com/graphql
+
+  ```
+
+- #### Structure
+  **_Clean-Architecture_**
 
 ## Contributing
 
