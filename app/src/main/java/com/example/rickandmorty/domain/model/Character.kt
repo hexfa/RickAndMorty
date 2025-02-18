@@ -1,6 +1,6 @@
-package com.example.rickandmorty.domain
+package com.example.rickandmorty.domain.model
 
-data class DetailedCharacters(
+data class Character(
     val name: String,
     val image: String,
     val id: String,

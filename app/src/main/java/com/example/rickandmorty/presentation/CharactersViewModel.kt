@@ -1,11 +1,10 @@
 package com.example.rickandmorty.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmorty.domain.DetailedCharacters
-import com.example.rickandmorty.domain.GetCharactersUseCase
-import com.example.rickandmorty.domain.SimpleCharacter
+import com.example.rickandmorty.domain.model.DetailedCharacters
+import com.example.rickandmorty.domain.usecase.GetCharactersUseCase
+import com.example.rickandmorty.domain.model.Character
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -43,7 +42,7 @@ class CharactersViewModel @Inject constructor(
     }
 
     data class CharactersState(
-        val characterList: List<SimpleCharacter> = emptyList(),
+        val characterList: List<Character> = emptyList(),
         val isLoading: Boolean = false,
         val selectedCharacters: DetailedCharacters? = null
     )
