@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -31,17 +30,6 @@ fun CharactersScreen(
     onDismissCharactersDialog: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        Log.d("chaar","character.id")
-
-        if(state.isLoading) {
-            Log.d("chaar","if.id")
-
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center)
-            )
-        } else {
-            Log.d("chaar","else.id")
-
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
@@ -69,7 +57,6 @@ fun CharactersScreen(
                         .padding(16.dp)
                 )
             }
-        }
     }
 }
 
