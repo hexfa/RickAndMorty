@@ -12,11 +12,11 @@ apollo {
 }
 
 android {
-    namespace 'com.example.rickandmorty'
+    namespace 'com.hexfa.rickandmorty'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.rickandmorty"
+        applicationId "com.hexfa.rickandmorty"
         minSdk 24
         targetSdk 33
         versionCode 1
