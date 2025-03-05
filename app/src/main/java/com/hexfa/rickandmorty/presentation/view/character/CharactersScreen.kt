@@ -1,6 +1,8 @@
 package com.hexfa.rickandmorty.presentation.view.character
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,6 +19,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Settings
@@ -34,22 +38,27 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.hexfa.rickandmorty.domain.model.DetailedCharacters
+import com.hexfa.rickandmorty.presentation.view.theme.ThemeViewModel
 
 @Composable
-fun CharactersScreen() {
+fun CharactersScreen(themeViewModel: ThemeViewModel) {
 
     val viewModel: CharactersViewModel = hiltViewModel()
     val state by viewModel.state.collectAsState()
 
+    val expanded = remember { mutableStateOf(false) }
+    val isGridView = remember { mutableStateOf(false) }
+    val isDarkTheme by themeViewModel.isDarkTheme.collectAsState()
+    val backgroundColor by animateColorAsState(
+        targetValue = MaterialTheme.colors.background,
+        label = "Background Color Animation"
+    )
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colors.background)
+            .background(backgroundColor)
     ) {
-
-        val expanded = remember { mutableStateOf(false) }
-        val isGridView = remember { mutableStateOf(false) }
-
         TopAppBar(
             title = { Text("Characters") },
             backgroundColor = MaterialTheme.colors.primary,
@@ -65,13 +74,11 @@ fun CharactersScreen() {
                     expanded = expanded.value,
                     onDismissRequest = { expanded.value = false }
                 ) {
-                    ThemeIcon(expanded)
+                    ThemeIcon(expanded, themeViewModel, isDarkTheme)
                     GridIcon(expanded, isGridView)
                 }
             }
         )
-
-
 
         AnimatedContent(targetState = isGridView.value, label = "List-Grid Animation") { gridView ->
             if (gridView) {
@@ -106,23 +113,41 @@ private fun GridIcon(
         Icon(
             imageVector = if (isGridView.value) Icons.Default.List else Icons.Default.Settings,
             contentDescription = "Toggle View",
-            modifier = Modifier.padding(end = 8.dp)
+            modifier = Modifier.padding(end = 8.dp),
+            tint = MaterialTheme.colors.onSurface
         )
-        Text(if (isGridView.value) "List View" else "Grid View")
+        Text(
+            if (isGridView.value) "List View" else "Grid View",
+            color = MaterialTheme.colors.onSurface
+        )
     }
 }
 
 @Composable
-private fun ThemeIcon(expanded: MutableState<Boolean>) {
+private fun ThemeIcon(
+    expanded: MutableState<Boolean>,
+    themeViewModel: ThemeViewModel,
+    isDarkTheme: Boolean
+) {
+    val animatedDarkTheme = remember { mutableStateOf(isDarkTheme) }
+
     DropdownMenuItem(onClick = {
         expanded.value = false
+        animatedDarkTheme.value = !animatedDarkTheme.value
+        themeViewModel.toggleTheme()
     }) {
-        Icon(
-            imageVector = Icons.Default.Settings,
-            contentDescription = "Theme",
-            modifier = Modifier.padding(end = 8.dp)
+        Crossfade(targetState = animatedDarkTheme.value, label = "Theme Icon Animation") { theme ->
+            Icon(
+                imageVector = if (theme) Icons.Filled.LightMode else Icons.Filled.DarkMode,
+                contentDescription = "Theme Icon",
+                modifier = Modifier.padding(end = 8.dp),
+                tint = MaterialTheme.colors.onSurface
+            )
+        }
+        Text(
+            if (animatedDarkTheme.value) "Light Mode" else "Dark Mode",
+            color = MaterialTheme.colors.onSurface
         )
-        Text("Theme")
     }
 }
 
