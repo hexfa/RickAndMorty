@@ -38,17 +38,17 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.hexfa.rickandmorty.domain.model.DetailedCharacters
-import com.hexfa.rickandmorty.presentation.view.theme.ThemeViewModel
+import com.hexfa.rickandmorty.presentation.view.setting.SettingViewModel
 
 @Composable
-fun CharactersScreen(themeViewModel: ThemeViewModel) {
+fun CharactersScreen(settingViewModel: SettingViewModel) {
 
     val viewModel: CharactersViewModel = hiltViewModel()
     val state by viewModel.state.collectAsState()
 
     val expanded = remember { mutableStateOf(false) }
-    val isGridView = remember { mutableStateOf(false) }
-    val isDarkTheme by themeViewModel.isDarkTheme.collectAsState()
+    val isGridView by settingViewModel.isGridView.collectAsState()
+    val isDarkTheme by settingViewModel.isDarkTheme.collectAsState()
     val backgroundColor by animateColorAsState(
         targetValue = MaterialTheme.colors.background,
         label = "Background Color Animation"
@@ -74,13 +74,13 @@ fun CharactersScreen(themeViewModel: ThemeViewModel) {
                     expanded = expanded.value,
                     onDismissRequest = { expanded.value = false }
                 ) {
-                    ThemeIcon(expanded, themeViewModel, isDarkTheme)
-                    GridIcon(expanded, isGridView)
+                    ThemeIcon(expanded, settingViewModel, isDarkTheme)
+                    GridIcon(expanded, settingViewModel, isGridView)
                 }
             }
         )
 
-        AnimatedContent(targetState = isGridView.value, label = "List-Grid Animation") { gridView ->
+        AnimatedContent(targetState = isGridView, label = "List-Grid Animation") { gridView ->
             if (gridView) {
                 ProvideLazyVerticalGrid(state)
             } else {
@@ -104,20 +104,21 @@ fun CharactersScreen(themeViewModel: ThemeViewModel) {
 @Composable
 private fun GridIcon(
     expanded: MutableState<Boolean>,
-    isGridView: MutableState<Boolean>
+    settingViewModel: SettingViewModel,
+    isGridView: Boolean
 ) {
     DropdownMenuItem(onClick = {
         expanded.value = false
-        isGridView.value = !isGridView.value
+        settingViewModel.toggleGridView()
     }) {
         Icon(
-            imageVector = if (isGridView.value) Icons.Default.List else Icons.Default.Settings,
+            imageVector = if (isGridView) Icons.Default.List else Icons.Default.Settings,
             contentDescription = "Toggle View",
             modifier = Modifier.padding(end = 8.dp),
             tint = MaterialTheme.colors.onSurface
         )
         Text(
-            if (isGridView.value) "List View" else "Grid View",
+            if (isGridView) "List View" else "Grid View",
             color = MaterialTheme.colors.onSurface
         )
     }
@@ -126,7 +127,7 @@ private fun GridIcon(
 @Composable
 private fun ThemeIcon(
     expanded: MutableState<Boolean>,
-    themeViewModel: ThemeViewModel,
+    settingViewModel: SettingViewModel,
     isDarkTheme: Boolean
 ) {
     val animatedDarkTheme = remember { mutableStateOf(isDarkTheme) }
@@ -134,7 +135,7 @@ private fun ThemeIcon(
     DropdownMenuItem(onClick = {
         expanded.value = false
         animatedDarkTheme.value = !animatedDarkTheme.value
-        themeViewModel.toggleTheme()
+        settingViewModel.toggleTheme()
     }) {
         Crossfade(targetState = animatedDarkTheme.value, label = "Theme Icon Animation") { theme ->
             Icon(

@@ -12,7 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.hexfa.rickandmorty.presentation.view.character.CharactersScreen
 import com.hexfa.rickandmorty.presentation.base.ScreenBase
-import com.hexfa.rickandmorty.presentation.view.theme.ThemeViewModel
+import com.hexfa.rickandmorty.presentation.view.setting.SettingViewModel
 import com.hexfa.rickandmorty.ui.theme.RickAndMortyTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val themeViewModel: ThemeViewModel = hiltViewModel()
-            val themeState by themeViewModel.isDarkTheme.collectAsState()
+            val settingViewModel: SettingViewModel = hiltViewModel()
+            val themeState by settingViewModel.isDarkTheme.collectAsState()
             val isDarkTheme = remember { mutableStateOf(themeState) }
 
             LaunchedEffect(themeState) {
@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
             Crossfade(targetState = isDarkTheme.value, label = "Theme Crossfade") { darkTheme ->
                 RickAndMortyTheme(darkTheme = darkTheme) {
                     ScreenBase {
-                        CharactersScreen(themeViewModel)
+                        CharactersScreen(settingViewModel)
                     }
                 }
             }

@@ -1,4 +1,4 @@
-package com.hexfa.rickandmorty.data.datasource
+package com.hexfa.rickandmorty.data.datasource.remote
 
 import com.apollographql.apollo3.ApolloClient
 import com.hexfa.rickandmorty.data.mapper.toCharacter

@@ -1,6 +1,6 @@
 package com.hexfa.rickandmorty.data.repository
 
-import com.hexfa.rickandmorty.data.datasource.RemoteCharacterDataSource
+import com.hexfa.rickandmorty.data.datasource.remote.RemoteCharacterDataSource
 import com.hexfa.rickandmorty.domain.model.Character
 import com.hexfa.rickandmorty.domain.repository.CharacterRepository
 
