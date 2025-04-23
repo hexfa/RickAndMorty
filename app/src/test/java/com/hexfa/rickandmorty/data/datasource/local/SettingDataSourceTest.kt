@@ -30,4 +30,12 @@ class SettingDataSourceTest {
         val file = context.preferencesDataStoreFile("settings")
         if (file.exists()) file.delete()
     }
+
+    @Test
+    fun `defaultThemeShouldBeFalse`() = runTest {
+        dataSource.isDarkTheme.test {
+            assertEquals(false, awaitItem())
+            cancel()
+        }
+    }
 }
