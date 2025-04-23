@@ -49,4 +49,26 @@ class CharacterMapperTest {
         Assert.assertEquals("", character.gender)
         Assert.assertEquals("", character.species)
     }
+
+    @Test
+    fun `test toCharacter should return default value for missing fields`() {
+        // Arrange
+        val result = CharactersQuery.Result(
+            name = "Morty Smith",
+            image = null,
+            id = "2",
+            gender = null,
+            species = "Human"
+        )
+
+        // Act
+        val character = result.toCharacter()
+
+        // Assert
+        Assert.assertEquals("Morty Smith", character.name)
+        Assert.assertEquals("", character.image) // Default value when image is null
+        Assert.assertEquals("2", character.id)
+        Assert.assertEquals("", character.gender) // Default value when gender is null
+        Assert.assertEquals("Human", character.species)
+    }
 }
