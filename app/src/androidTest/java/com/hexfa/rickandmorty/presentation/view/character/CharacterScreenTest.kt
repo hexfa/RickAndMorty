@@ -36,4 +36,9 @@ class CharacterScreenTest {
             }
         }
     }
+
+    @Test
+    fun characters_are_displayed_in_list_by_default() {
+        composeTestRule.onNodeWithText("Rick Sanchez").assertIsDisplayed()
+    }
 }
