@@ -38,4 +38,14 @@ class SettingDataSourceTest {
             cancel()
         }
     }
+
+    @Test
+    fun `saveAndReadDarkTheme`() = runTest {
+        dataSource.saveTheme(true)
+
+        dataSource.isDarkTheme.test {
+            assertEquals(true, awaitItem())
+            cancel()
+        }
+    }
 }
