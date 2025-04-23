@@ -41,4 +41,13 @@ class CharacterScreenTest {
     fun characters_are_displayed_in_list_by_default() {
         composeTestRule.onNodeWithText("Rick Sanchez").assertIsDisplayed()
     }
+
+    @Test
+    fun toggle_grid_view_changes_layout() {
+        composeTestRule.onNodeWithContentDescription("More options").performClick()
+
+        composeTestRule.onNodeWithText("Grid View").performClick()
+
+        composeTestRule.onNodeWithText("Rick Sanchez").assertIsDisplayed()
+    }
 }
