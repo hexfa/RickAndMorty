@@ -40,6 +40,14 @@ class SettingDataSourceTest {
     }
 
     @Test
+    fun `defaultGridViewShouldBeFalse`() = runTest {
+        dataSource.isGridView.test {
+            assertEquals(false, awaitItem())
+            cancel()
+        }
+    }
+
+    @Test
     fun `saveAndReadDarkTheme`() = runTest {
         dataSource.saveTheme(true)
 
