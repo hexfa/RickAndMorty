@@ -56,4 +56,14 @@ class SettingDataSourceTest {
             cancel()
         }
     }
+
+    @Test
+    fun `saveAndReadGridView`() = runTest {
+        dataSource.saveGridView(true)
+
+        dataSource.isGridView.test {
+            assertEquals(true, awaitItem())
+            cancel()
+        }
+    }
 }
