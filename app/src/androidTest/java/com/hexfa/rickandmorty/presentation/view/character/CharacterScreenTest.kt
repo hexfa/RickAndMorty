@@ -50,4 +50,14 @@ class CharacterScreenTest {
 
         composeTestRule.onNodeWithText("Rick Sanchez").assertIsDisplayed()
     }
+
+    @Test
+    fun theme_toggle_changes_icon() {
+        composeTestRule.onNodeWithContentDescription("More options").performClick()
+
+        composeTestRule.onNodeWithText("Dark Mode").performClick()
+
+        composeTestRule.onNodeWithContentDescription("More options").performClick()
+        composeTestRule.onNodeWithText("Light Mode").assertIsDisplayed()
+    }
 }
