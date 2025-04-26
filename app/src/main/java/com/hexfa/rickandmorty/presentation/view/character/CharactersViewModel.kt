@@ -23,7 +23,6 @@ class CharactersViewModel @Inject constructor(
                 it.copy(
                 )
             }
-            //todo mock data
             _state.update {
                 it.copy(
                     characterList = getCharactersUseCase.execute(),
