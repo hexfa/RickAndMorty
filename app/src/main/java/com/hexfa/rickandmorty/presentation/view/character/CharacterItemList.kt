@@ -21,10 +21,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
 import com.hexfa.rickandmorty.domain.model.Character
 import com.hexfa.rickandmorty.ui.theme.FemaleColor
 import com.hexfa.rickandmorty.ui.theme.MaleColor
@@ -52,11 +52,9 @@ fun CharacterItemList(
             val imageId =
                 context.resources.getIdentifier("cartoon", "drawable", context.packageName)
 
-            //todo mock data
             if (imageId != 0) {
                 Image(
-                    painter = painterResource(id = imageId),
-//                painter = rememberAsyncImagePainter(character.image),
+                    painter = rememberAsyncImagePainter(character.image),
                     contentDescription = character.id,
                     modifier = Modifier
                         .height(100.dp)
