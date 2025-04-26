@@ -1,8 +1,7 @@
-package com.hexfa.rickandmorty.presentation.view
+package com.hexfa.rickandmorty.presentation.view.character
 
 import com.hexfa.rickandmorty.domain.model.Character
 import com.hexfa.rickandmorty.domain.usecase.GetCharactersUseCase
-import com.hexfa.rickandmorty.presentation.view.character.CharactersViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
