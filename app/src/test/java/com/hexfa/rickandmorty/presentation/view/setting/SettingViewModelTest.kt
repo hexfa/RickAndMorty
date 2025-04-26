@@ -49,4 +49,16 @@ class SettingViewModelTest {
             cancelAndConsumeRemainingEvents()
         }
     }
+
+    @Test
+    fun `toggleTheme updates state and saves to repository`() = runTest {
+        viewModel.toggleTheme()
+
+        viewModel.isDarkTheme.test {
+            assert(awaitItem())
+            cancelAndConsumeRemainingEvents()
+        }
+
+        verify(settingRepository).saveTheme(true)
+    }
 }
