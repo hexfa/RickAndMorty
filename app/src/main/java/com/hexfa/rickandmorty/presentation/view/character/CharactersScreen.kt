@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
@@ -31,13 +30,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.hexfa.rickandmorty.domain.model.DetailedCharacters
 import com.hexfa.rickandmorty.presentation.view.setting.SettingViewModel
 
 @Composable
@@ -86,17 +80,6 @@ fun CharactersScreen(settingViewModel: SettingViewModel) {
             } else {
                 ProvideLazyColumn(state)
             }
-        }
-
-        if (state.selectedCharacters != null) {
-            CountryDialog(
-                characters = state.selectedCharacters!!,
-                onDismiss = viewModel::dismissCharactersDialog,
-                modifier = Modifier
-                    .clip(RoundedCornerShape(5.dp))
-                    .background(Color.White)
-                    .padding(16.dp)
-            )
         }
     }
 }
@@ -179,41 +162,41 @@ private fun ProvideLazyVerticalGrid(state: CharactersViewModel.CharactersState) 
     }
 }
 
-@Composable
-private fun CountryDialog(
-    characters: DetailedCharacters,
-    onDismiss: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-
-    Dialog(
-        onDismissRequest = onDismiss
-    ) {
-        Column(
-            modifier = modifier
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = characters.id,
-                    fontSize = 30.sp
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                Text(
-                    text = characters.name,
-                    fontSize = 24.sp
-                )
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(text = "Continent: " + characters.gender)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Currency: " + characters.species)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Capital: " + characters.id)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Language(s): ${characters.species}")
-            Spacer(modifier = Modifier.height(8.dp))
-        }
-    }
-}
+//@Composable
+//private fun CountryDialog(
+//    characters: DetailedCharacters,
+//    onDismiss: () -> Unit,
+//    modifier: Modifier = Modifier
+//) {
+//
+//    Dialog(
+//        onDismissRequest = onDismiss
+//    ) {
+//        Column(
+//            modifier = modifier
+//        ) {
+//            Row(
+//                modifier = Modifier.fillMaxWidth()
+//            ) {
+//                Text(
+//                    text = characters.id,
+//                    fontSize = 30.sp
+//                )
+//                Spacer(modifier = Modifier.width(16.dp))
+//                Text(
+//                    text = characters.name,
+//                    fontSize = 24.sp
+//                )
+//            }
+//            Spacer(modifier = Modifier.height(16.dp))
+//            Text(text = "Continent: " + characters.gender)
+//            Spacer(modifier = Modifier.height(8.dp))
+//            Text(text = "Currency: " + characters.species)
+//            Spacer(modifier = Modifier.height(8.dp))
+//            Text(text = "Capital: " + characters.id)
+//            Spacer(modifier = Modifier.height(8.dp))
+//            Text(text = "Language(s): ${characters.species}")
+//            Spacer(modifier = Modifier.height(8.dp))
+//        }
+//    }
+//}
