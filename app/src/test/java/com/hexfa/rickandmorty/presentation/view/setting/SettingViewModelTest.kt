@@ -61,4 +61,16 @@ class SettingViewModelTest {
 
         verify(settingRepository).saveTheme(true)
     }
+
+    @Test
+    fun `toggleGridView updates state and saves to repository`() = runTest {
+        viewModel.toggleGridView()
+
+        viewModel.isGridView.test {
+            assert(awaitItem())
+            cancelAndConsumeRemainingEvents()
+        }
+
+        verify(settingRepository).saveGrid(true)
+    }
 }
