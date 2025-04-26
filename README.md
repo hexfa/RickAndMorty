@@ -1,6 +1,10 @@
 # Rick and Morty App
+
 ## Details 📜
-This is a simple app for Rick and Morty, which displays the names of characters from the popular TV show "Rick and Morty". The app is built using the following technologies: Compose, GraphQL, Hilt, View Model, and Clean Architecture.
+
+This is a simple app for Rick and Morty, which displays the names of characters from the popular TV
+show "Rick and Morty". The app is built using the following technologies: Compose, GraphQL, Hilt,
+View Model, and Clean Architecture.
 
 ## Table of Contents
 
@@ -16,6 +20,8 @@ The Rick and Morty App provides the following features:
 - Display a list of character names from the show "Rick and Morty".
 - Fetch character data from the GraphQL API.
 - Support for pagination and lazy loading of characters.
+- Switch between grid view and list view to display characters.
+- Toggle between light mode and dark mode for a personalized UI experience.
 - Clean Architecture design principles followed for better separation of concerns.
 
 ## Technologies Used
@@ -26,7 +32,8 @@ The app is built using the following technologies:
 - **GraphQL**: The app interacts with a GraphQL API to fetch character data.
 - **Hilt**: Hilt is used for dependency injection to manage object creation and scoping.
 - **View Model**: Architecture component ViewModels are used to store and manage UI-related data.
-- **Clean Architecture**: The app follows Clean Architecture principles to achieve separation of concerns and maintainability.
+- **Clean Architecture**: The app follows Clean Architecture principles to achieve separation of
+  concerns and maintainability.
 
 ## Prerequisites
 
@@ -39,15 +46,19 @@ Before running the Rick and Morty App, ensure you have the following installed o
 ## Lets Start 🕺
 
 Clone this repository and import it into your **Android IDE**
+
 ```bash
 https://github.com/hexfa/RickAndMorty.git
 ```
 
 ## Preview 📱
-  ### Images 🖼️
+
+### Images 🖼️
+
   <img src="https://github.com/hexfa/Files/blob/main/RickAndMorty/Screenshot%202023-06-20%20230730.png" height="649" width="300" alt="Rick and morty App hexfa">         
 
 ## Resources ℹ️
+
 - #### Remote API
   ```bash
   https://rickandmortyapi.com/graphql
@@ -59,7 +70,8 @@ https://github.com/hexfa/RickAndMorty.git
 
 ## Contributing
 
-Contributions to the Rick and Morty App are welcome. If you want to contribute, please follow these steps:
+Contributions to the Rick and Morty App are welcome. If you want to contribute, please follow these
+steps:
 
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
