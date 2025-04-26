@@ -1,6 +1,5 @@
 package com.hexfa.rickandmorty.presentation.view.character
 
-import com.hexfa.rickandmorty.domain.model.DetailedCharacters
 import com.hexfa.rickandmorty.domain.usecase.GetCharactersUseCase
 import com.hexfa.rickandmorty.domain.model.Character
 import com.hexfa.rickandmorty.presentation.base.ViewModelBase
@@ -34,16 +33,7 @@ class CharactersViewModel @Inject constructor(
     }
 
 
-    fun dismissCharactersDialog() {
-        _state.update {
-            it.copy(
-                selectedCharacters = null
-            )
-        }
-    }
-
     data class CharactersState(
         val characterList: List<Character> = emptyList(),
-        val selectedCharacters: DetailedCharacters? = null
     )
 }
