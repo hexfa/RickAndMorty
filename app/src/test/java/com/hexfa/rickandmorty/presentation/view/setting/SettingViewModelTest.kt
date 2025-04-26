@@ -39,4 +39,14 @@ class SettingViewModelTest {
             cancelAndConsumeRemainingEvents()
         }
     }
+
+    @Test
+    fun `initial grid view state is loaded from repository`() = runTest {
+        gridViewFlow.value = true
+
+        viewModel.isGridView.test {
+            assert(awaitItem())
+            cancelAndConsumeRemainingEvents()
+        }
+    }
 }
